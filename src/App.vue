@@ -5,8 +5,8 @@ import Header from "./components/header/index.vue";
 
 <template>
   <v-app>
-    <Header />
-    <v-container fluid class="pa-4 bg-gray h-100">
+    <Header  />
+    <v-container fluid class="pa-4 bg-gray h-100 mt-10">
       <router-view />
     </v-container>
   </v-app>

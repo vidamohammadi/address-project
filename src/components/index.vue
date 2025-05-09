@@ -1,10 +1,10 @@
 <script setup>
 
- </script>
+ import CreateNewAddress from "@/components/address/CreateNewAddress.vue";
+</script>
 
 <template>
-  <div>sss</div>
-
+<CreateNewAddress />
 </template>
 
 <style scoped>
