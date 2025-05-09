@@ -38,7 +38,7 @@ const submit = () =>{
 </script>
 
 <template>
-  <v-container>
+  <v-container >
     <v-row class="my-1 mx-5">
       <div class="px-lg-3 py-3 w-100 text-body-1 text-gray-400  ">
         ثبت آدرس

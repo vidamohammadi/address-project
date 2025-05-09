@@ -8,7 +8,7 @@
         <span class="text-black">ثبت آدرس</span>
       </v-col>
       <v-col cols="4" >
-        <router-link to="/" class="text-green">مشاهده آدرس ها</router-link>
+        <router-link to="/address-list" class="text-green">مشاهده آدرس ها</router-link>
       </v-col>
     </v-row>
   </v-app-bar>

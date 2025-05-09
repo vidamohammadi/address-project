@@ -4,9 +4,9 @@ import Header from "./components/header/index.vue";
 </script>
 
 <template>
-  <v-app>
+  <v-app class=" bg-gray">
     <Header  />
-    <v-container fluid class="pa-4 bg-gray  mt-10 d-flex justify-center">
+    <v-container fluid class="pa-4 h-100 mt-10 d-flex justify-center">
       <router-view />
     </v-container>
   </v-app>
