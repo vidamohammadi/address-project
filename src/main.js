@@ -8,6 +8,7 @@ import * as components from 'vuetify/components'
 import * as directives from 'vuetify/directives'
 import router from './router'
 import { fa } from 'vuetify/locale'
+import 'leaflet/dist/leaflet.css';
 
 const vuetify = createVuetify({
     components,
