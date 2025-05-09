@@ -6,15 +6,16 @@ import {CREATE_NEW_ADDRESS} from "@/schema/CREATE_NEW_ADDRESS.schema.js";
   import {addNewAddress} from "@/services/address.service.js";
 import MapPicker from "@/components/address/MapPicker.vue";
  import useVuelidate from '@vuelidate/core';
+ import { useRouter } from 'vue-router'
 
-   const schema = reactive([...CREATE_NEW_ADDRESS.schema]);
+ const router = useRouter()
+ const schema = reactive([...CREATE_NEW_ADDRESS.schema]);
 const state = reactive({...CREATE_NEW_ADDRESS.model});
 const rules = CREATE_NEW_ADDRESS.validations;
 const v$ = useVuelidate(rules, state);
 const selected = ref('female')
 const mapPicker = ref(false)
-
-const goToMapPicker = async() =>{
+ const goToMapPicker = async() =>{
   let isFormValid = await isFormValidate();
 
   if (!isFormValid) {
@@ -42,7 +43,7 @@ try{
     gender:selected.value
   }
   await addNewAddress(addressData)
-
+  await router.push('/confirmation')
 }catch (e) {
   alert('ثبت آدرس با خطا انجام شد.')
   console.log(e)
