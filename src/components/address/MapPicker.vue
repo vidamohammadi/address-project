@@ -1,5 +1,5 @@
 <template>
-  <v-container>
+  <v-container >
     <div id="map" style="height: 400px;"></div>
     <v-row class="mt-4">
       <v-col>
