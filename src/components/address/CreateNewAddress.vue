@@ -1,27 +1,35 @@
 <script setup>
-import {useDisplay} from 'vuetify';
-import { reactive, ref} from "vue";
+ import { reactive, ref} from "vue";
 import FormContainer from "../base/form/FormContainer.vue";
 import FormGenerator from "../base/form/FormGenerator.vue";
 import {CREATE_NEW_ADDRESS} from "@/schema/CREATE_NEW_ADDRESS.schema.js";
-import useVuelidate from '@vuelidate/core';
- import { useRouter } from 'vue-router'
-import {addNewAddress} from "@/services/address.service.js";
+  import {addNewAddress} from "@/services/address.service.js";
 import MapPicker from "@/components/address/MapPicker.vue";
+ import useVuelidate from '@vuelidate/core';
 
-const router = useRouter()
-const dialog = ref(false);
-const {lg} = useDisplay();
-const schema = reactive([...CREATE_NEW_ADDRESS.schema]);
+   const schema = reactive([...CREATE_NEW_ADDRESS.schema]);
 const state = reactive({...CREATE_NEW_ADDRESS.model});
 const rules = CREATE_NEW_ADDRESS.validations;
 const v$ = useVuelidate(rules, state);
 const selected = ref('female')
 const mapPicker = ref(false)
-const goToMapPicker = () =>{
+
+const goToMapPicker = async() =>{
+  let isFormValid = await isFormValidate();
+
+  if (!isFormValid) {
+    alert('فرم نادرست است.')
+    return;
+  }
   mapPicker.value = true
 }
-const submit = ({ lat, lng }) => {
+async function isFormValidate() {
+   return await v$.value.$validate();
+ }
+const submit = async({ lat, lng }) => {
+
+
+try{
   const addressData = {
     first_name:state.firstName,
     last_name:state.lastName,
@@ -33,7 +41,12 @@ const submit = ({ lat, lng }) => {
     lng:lng,
     gender:selected.value
   }
-  addNewAddress(addressData)
+  await addNewAddress(addressData)
+
+}catch (e) {
+  alert('ثبت آدرس با خطا انجام شد.')
+  console.log(e)
+}
 
 }
 

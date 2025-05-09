@@ -1,4 +1,4 @@
-import {required, minLength, maxLength} from '@vuelidate/validators';
+import { required, minLength, maxLength, helpers } from '@vuelidate/validators'
 
 export const CREATE_NEW_ADDRESS = {
      schema: [
@@ -64,21 +64,26 @@ export const CREATE_NEW_ADDRESS = {
 
     },
 
-     validations: {
-         firstName: {required},
-         lastName: {required},
-         mobileNumber: {
-            required,
-              minLength: minLength(11),
-            maxLength: maxLength(11)
+    validations: {
+        firstName: {
+            required: helpers.withMessage('نام الزامی است', required)
         },
-         phoneNumber: {
-            required,
-              minLength: minLength(11),
-            maxLength: maxLength(11)
+        lastName: {
+            required: helpers.withMessage('نام خانوادگی الزامی است', required)
         },
-
-        addressDetails: {required},
-
+        mobileNumber: {
+            required: helpers.withMessage('شماره موبایل الزامی است', required),
+            minLength: helpers.withMessage('شماره موبایل فرمت درست ندارد', minLength(11)),
+            maxLength: helpers.withMessage('شماره موبایل فرمت درست ندارد', maxLength(11))
+        },
+        phoneNumber: {
+            required: helpers.withMessage('شماره تلفن الزامی است', required),
+            minLength: helpers.withMessage('شماره تلفن فرمت درست ندارد', minLength(11)),
+            maxLength: helpers.withMessage('شماره تلفن فرمت درست ندارد', maxLength(11))
+        },
+        addressDetails: {
+            required: helpers.withMessage('آدرس الزامی است', required)
+        }
     }
+
 };

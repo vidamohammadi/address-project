@@ -43,6 +43,8 @@
         :name="input.id"
         :clearable="input.clearable"
         :hide-details="input.hideDetails"
+        :error="props.v$[input.id].$error"
+        :error-messages="props.v$[input.id].$errors.map(e => e.$message)"
         :suffix="input.suffix"
         :append-inner-icon="input.innerIcon"
         :prepend-icon="input.prependIcon"
@@ -78,51 +80,7 @@
             emit('update:modelValue', $event.target.value)
         "
         @blur="props.v$[input.id].$touch()"></v-text-field>
-       <v-select
-        v-else-if="input.type === 'select'"
-        :variant="input.variant ? input.variant : 'solo'"
-        bg-color="btn"
-        v-bind="$attrs"
-        :items="input.items"
-        item-title="title"
-        item-value="value"
-        return-object
-        :label="input.label"
-        :placeholder="input.placeholder"
-        :clearable="input.clearable"
-        :suffix="input.suffix"
-        :hide-details="input.hideDetails"
-        :append-inner-icon="input.innerIcon"
-        :prepend-icon="input.prependIcon"
-        :disabled="input.disabled"
-        v-model="state[input.id]"
-        :error-messages="props.v$[input.id].$errors.map(e => e.$message)"
-        @input="props.v$[input.id].$touch()"
-        @blur="props.v$[input.id].$touch()"
-        :base-color="
-          props.v$[input.id].$validate &&
-          props.v$[input.id].$dirty &&
-          !props.v$[input.id].$error
-            ? 'success_input'
-            : ''
-        "
-        :color="
-          props.v$[input.id].$validate &&
-          props.v$[input.id].$dirty &&
-          !props.v$[input.id].$error
-            ? 'success_input'
-            : ''
-        "
-        :class="[
-          input.class,
-          {
-            'v-field--active-input':
-              props.v$[input.id].$validate &&
-              props.v$[input.id].$dirty &&
-              !props.v$[input.id].$error
-          }
-        ]"></v-select>
-      <v-textarea
+       <v-textarea
         v-else-if="input.type === 'textarea'"
         :variant="input.variant ? input.variant : 'outlined'"
         bg-color="btn"
@@ -135,7 +93,8 @@
         :prepend-icon="input.prependIcon"
         :disabled="input.disabled"
         v-model="state[input.id]"
-
+        :error="props.v$[input.id].$error"
+        :error-messages="props.v$[input.id].$errors.map(e => e.$message)"
         @input="props.v$[input.id].$touch()"
         @blur="props.v$[input.id].$touch()"
         :base-color="
