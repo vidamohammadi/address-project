@@ -6,7 +6,7 @@ import Header from "./components/header/index.vue";
 <template>
   <v-app>
     <Header  />
-    <v-container fluid class="pa-4 bg-gray h-100 mt-10">
+    <v-container fluid class="pa-4 bg-gray  mt-10 d-flex justify-center">
       <router-view />
     </v-container>
   </v-app>
