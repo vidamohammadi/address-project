@@ -9,16 +9,24 @@
         <v-text-field v-model="lng" label="Longitude" readonly></v-text-field>
       </v-col>
     </v-row>
+    <v-row>
+      <v-btn width="100%" color="green" @click="submit">
+        ثبت
+      </v-btn>
+
+    </v-row>
   </v-container>
 </template>
 
 <script setup>
 import { onMounted, ref } from 'vue'
 import L from 'leaflet'
-
+const emit = defineEmits(['submitForm']);
 const lat = ref('')
 const lng = ref('')
-
+const submit = () => {
+  emit('submitForm', { lat: lat.value, lng: lng.value })
+}
 onMounted(() => {
   const map = L.map('map').setView([35.6892, 51.3890], 12) // default: Tehran
 
